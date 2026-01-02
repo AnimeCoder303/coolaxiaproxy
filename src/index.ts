@@ -8,7 +8,7 @@ export default {
 
 		// The URL for the remote third party API you want to fetch from
 		// but does not implement CORS
-		const API_URL = "https://examples.cloudflareworkers.com/demos/demoapi";
+		// const API_URL = "https://examples.cloudflareworkers.com/demos/demoapi";
 
 		// The endpoint you want the CORS reverse proxy to be on
 		const PROXY_ENDPOINT = "/corsproxy/";
@@ -77,9 +77,9 @@ export default {
 			const url = new URL(request.url);
 			let apiUrl = url.searchParams.get("apiurl");
 
-			if (apiUrl == null) {
+			/* if (apiUrl == null) {
 				apiUrl = API_URL;
-			}
+			} */
 
 			// Rewrite request to point to API URL. This also makes the request mutable
 			// so you can add the correct Origin header to make the API server think
@@ -92,7 +92,7 @@ export default {
 			response = new Response(response.body, response);
 			// Set CORS headers
 
-			response.headers.set("Access-Control-Allow-Origin", url.origin);
+			response.headers.set("Access-Control-Allow-Origin", "*");
 
 			// Append to/Add Vary header so browser will cache response correctly
 			response.headers.append("Vary", "Origin");
